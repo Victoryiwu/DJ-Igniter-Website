@@ -465,28 +465,3 @@ button {
     width: 90%;
     margin: 10px 0;
 }
-
-/* 🔥 MOBILE FIX */
-@media (max-width: 768px) {
-
-    h1 {
-        font-size: 24px;
-    }
-
-    .hero img {
-        width: 100%;
-        height: auto;
-    }
-
-    .hero-text {
-        position: static; /* REMOVE OVERLAY */
-    }
-
-    .why {
-        flex-direction: column;
-    }
-
-    nav {
-        flex-direction: column;
-    }
-}
