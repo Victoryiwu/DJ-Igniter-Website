@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming | DJ Igniter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="favicon.ico" alt="DJ Igniter Logo">
+            <h2>DJ Igniter</h2>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="assistant.html">Assistant</a>
+            <a href="booking.html">Book</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>🧠 Programming Services</h1>
+        <p>Programming solutions: websites, software projects, assignment help, debugging. Clean code and efficient
+            performance guaranteed.</p>
+
+        <h2>Book This Service</h2>
+        <form class="bookingForm">
+            <input type="text" name="name" placeholder="Your Name" required><br><br>
+            <input type="email" name="email" placeholder="Email" required><br><br>
+
+            <label>Select Service Type:</label><br>
+            <select name="serviceSelect" class="serviceSelect" onchange="checkOther(this)" required>
+                <option value="">-- Choose Option --</option>
+                <option value="Website Development">Website Development</option>
+                <option value="Software Project">Software Project</option>
+                <option value="Assignment Help">Assignment Help</option>
+                <option value="Debugging">Debugging</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <input type="text" name="customService" placeholder="Enter custom service" class="customService"
+                style="display:none;"><br><br>
+            <input type="date" name="date" required><br><br>
+
+            <button type="submit">Book Now</button>
+        </form>
+
+        <p class="successMsg"></p>
+        <br>
+        <button onclick="location.href='services.html'">Back</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

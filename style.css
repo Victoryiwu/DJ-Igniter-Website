@@ -1,0 +1,413 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 🌌 BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #0a0a0a, #000000);
+    color: white;
+    animation: fadeIn 1s ease-in;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    margin-right: 10px;
+    transition: 0.4s;
+}
+
+.logo img:hover {
+    transform: rotate(5deg) scale(1.1);
+}
+
+/* NAV */
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: red;
+}
+
+nav a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: red;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* HERO */
+.hero {
+    height: 90vh;
+    background: url("favicon.ico") no-repeat center;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 40px;
+    background: linear-gradient(to right, red, cyan);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* SECTIONS */
+.container {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.container:nth-child(even) {
+    background: #111;
+}
+
+/* HEADINGS */
+h1 {
+    text-shadow: 0 0 10px red, 0 0 20px red;
+}
+
+h2 {
+    color: red;
+    margin-bottom: 20px;
+}
+
+/* CARDS */
+.card {
+    padding: 20px;
+    margin: 10px;
+    background: #222;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    background: black;
+}
+
+/* BUTTON */
+button {
+    padding: 12px 25px;
+    background: red;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: black;
+    box-shadow: 0 0 15px red;
+    transform: scale(1.1);
+}
+
+/* 🔥 FORM (UPGRADED) */
+form {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    animation: slideUp 0.6s ease;
+}
+
+/* INPUTS + SELECT */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: none;
+
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+/* FOCUS EFFECT */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px red, 0 0 20px red;
+}
+
+/* PLACEHOLDER */
+input::placeholder,
+textarea::placeholder {
+    color: #ccc;
+}
+
+/* SELECT */
+select {
+    appearance: none;
+    cursor: pointer;
+}
+
+/* FORM HOVER GLOW */
+form:hover {
+    box-shadow: 0 0 40px red;
+}
+
+/* SUCCESS MESSAGE */
+#successMsg {
+    color: lightgreen;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* FOOTER */
+footer {
+    background: black;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+/* LOADER */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: red;
+    font-size: 30px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* IMAGE EFFECT */
+img {
+    transition: 0.4s;
+}
+
+img:hover {
+    box-shadow: 0 0 20px red;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+    }
+
+    nav {
+        display: block;
+        text-align: center;
+    }
+
+    header {
+        flex-direction: column;
+    }
+}
+
+button,
+a {
+    transition: 0.3s;
+}
+
+button:hover,
+a:hover {
+    box-shadow: 0 0 10px red, 0 0 20px red;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 20px;
+    background: #111;
+    color: white;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* CHATBOX */
+#chatbox {
+    border: 1px solid #333;
+    height: 250px;
+    overflow-y: auto;
+    padding: 15px;
+    background: #111;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* ADMIN TABLE */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    border: 1px solid #333;
+}
+
+.admin-table th {
+    background: black;
+    color: red;
+}
+
+/* VISUALIZER */
+#visualizer {
+    width: 100%;
+    margin-top: 20px;
+    background: black;
+    border-radius: 10px;
+}
+
+/* General mobile-first styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav a {
+        padding: 10px;
+    }
+
+    .hero {
+        height: 80vh;
+    }
+
+    #visualizer {
+        max-width: 100%;
+    }
+
+    .card {
+        margin-bottom: 15px;
+    }
+
+    .overlay h1 {
+        font-size: 2em;
+    }
+
+    .overlay p {
+        font-size: 1.2em;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (max-width: 1024px) {
+    .hero {
+        height: 70vh;
+    }
+
+    .overlay h1 {
+        font-size: 3em;
+    }
+}
+
+body {
+    background-color: #121212;
+    color: #fff;
+}
+
+header,
+.hero,
+.container {
+    background-color: #1f1f1f;
+}
+
+button {
+    background-color: #1db954;
+    /* Spotify-style green */
+    color: white;
+}
+
+.card {
+    background-color: #2e2e2e;
+    border-radius: 8px;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact | DJ Igniter</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="favicon.ico" alt="DJ Igniter Logo">
+            <h2>DJ Igniter</h2>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="assistant.html">Assistant</a>
+            <a href="booking.html">Book</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <hr style="width:50%; margin:20px auto; border:1px solid #555;">
+
+        <h2>Contact Me</h2>
+
+        <!-- CLEAN FORM -->
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+
+        <p id="successMsg" style="margin-top:10px;"></p>
+
+        <h3>Or reach me directly:</h3>
+        <p>Email: Iwuchukwuchinosom@gmail.com</p>
+        <p>Phone: 09021368638</p>
+    </div>
+
+    <footer>
+        <p>© 2026 DJ Igniter Studios | All Rights Reserved</p>
+    </footer>
+
+    <!-- 🔊 CLICK SOUND -->
+    <audio id="clickSound" src="click.mp3"></audio>
+
+    <!-- ⚙️ MAIN SCRIPT -->
+    <script src="script.js"></script>
+
+    <!-- OPTIONAL SIMPLE FEEDBACK -->
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            document.getElementById("successMsg").innerHTML = "✅ Message sent successfully!";
+        });
+    </script>
+
+</body>
+
+</html>

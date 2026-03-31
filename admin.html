@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Dashboard | DJ Igniter</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <!-- 🔐 LOGIN -->
+    <div class="container" id="loginBox">
+        <h2>🔐 Admin Login</h2>
+
+        <input type="password" id="password" placeholder="Enter Password">
+        <br><br>
+
+        <button onclick="checkPassword()">Login</button>
+
+        <p id="errorMsg" style="color:red;"></p>
+    </div>
+
+    <!-- 📊 DASHBOARD -->
+    <div class="container" id="adminPanel" style="display:none;">
+
+        <h1>📊 Booking Dashboard</h1>
+
+        <button onclick="loadBookings()">Load Bookings</button>
+        <button onclick="clearBookings()">Clear All</button>
+
+        <br><br>
+
+        <div id="bookingList"></div>
+
+        <br>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <footer>
+        <p>© 2026 DJ Igniter Studios | All Rights Reserved</p>
+    </footer>
+
+    <!-- 🔊 CLICK SOUND -->
+    <audio id="clickSound" src="click.mp3"></audio>
+
+    <!-- ⚙️ MAIN SCRIPT -->
+    <script src="script.js"></script>
+
+    <!-- 🔥 ADMIN SYSTEM -->
+    <script>
+        const correctPassword = "igniter123";
+
+        function checkPassword() {
+            let input = document.getElementById("password").value;
+
+            if (input === correctPassword) {
+                document.getElementById("loginBox").style.display = "none";
+                document.getElementById("adminPanel").style.display = "block";
+                loadBookings(); // auto load
+            } else {
+                document.getElementById("errorMsg").innerHTML = "❌ Wrong Password";
+            }
+        }
+
+        function logout() {
+            document.getElementById("loginBox").style.display = "block";
+            document.getElementById("adminPanel").style.display = "none";
+        }
+
+        function loadBookings() {
+            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+            if (bookings.length === 0) {
+                document.getElementById("bookingList").innerHTML = "<p>No bookings yet.</p>";
+                return;
+            }
+
+            let output = `
+                <table class="admin-table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+            `;
+
+            bookings.forEach((b, index) => {
+                output += `
+                    <tr>
+                        <td>${b.name}</td>
+                        <td>${b.email}</td>
+                        <td>${b.service}</td>
+                        <td>${b.date}</td>
+                        <td>
+                            <button onclick="deleteBooking(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            output += "</table>";
+
+            document.getElementById("bookingList").innerHTML = output;
+        }
+
+        function deleteBooking(index) {
+            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+            bookings.splice(index, 1);
+            localStorage.setItem("bookings", JSON.stringify(bookings));
+            loadBookings();
+        }
+
+        function clearBookings() {
+            if (confirm("Are you sure you want to delete all bookings?")) {
+                localStorage.removeItem("bookings");
+                loadBookings();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

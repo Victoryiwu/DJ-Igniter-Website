@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assistant | DJ Igniter</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="favicon.ico">
+            <h2>DJ Igniter</h2>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="assistant.html">Assistant</a>
+            <a href="booking.html">Book</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>🤖 Igniter Assistant (Ava)</h2>
+
+        <div id="chatbox">
+            <p><b>Ava:</b> Hi, I’m Ava, DJ Igniter’s assistant. How can I help?</p>
+        </div>
+
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="reply()">Send</button>
+    </div>
+
+    <footer>
+        <p>© 2026 DJ Igniter Studios</p>
+    </footer>
+
+    <!-- 🔊 CLICK SOUND -->
+    <audio id="clickSound" src="click.mp3"></audio>
+
+    <script src="script.js"></script>
+
+    <script>
+        function reply() {
+            let input = document.getElementById("userInput").value.toLowerCase();
+            let chatbox = document.getElementById("chatbox");
+
+            chatbox.innerHTML += "<p><b>You:</b> " + input + "</p>";
+
+            let response = "I'm not sure about that. Try asking about services or booking.";
+
+            if (input.includes("hello") || input.includes("hi")) {
+                response = "Hello! I'm Ava. How can I assist you?";
+            } else if (input.includes("book")) {
+                response = "Click on the booking page to schedule your service.";
+            } else if (input.includes("price")) {
+                response = "Pricing depends on your request. Use booking page for details.";
+            } else if (input.includes("dj")) {
+                response = "DJ Igniter delivers high-energy DJ performances.";
+            } else if (input.includes("website")) {
+                response = "He creates modern, responsive websites.";
+            }
+
+            chatbox.innerHTML += "<p><b>Ava:</b> " + response + "</p>";
+
+            document.getElementById("userInput").value = "";
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+
+</body>
+
+</html>

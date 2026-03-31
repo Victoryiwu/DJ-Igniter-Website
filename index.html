@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DJ Igniter Studios | Home</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+
+    <!-- 🔥 LOADER -->
+    <div id="loader">
+        <h1>DJ IGNITER 🔥</h1>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="favicon.ico" alt="Logo">
+            <h2>DJ Igniter</h2>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="assistant.html">Assistant</a>
+            <a href="booking.html">Book</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="typewriter">
+            <h1 id="typingText"></h1>
+            <p>DJ ● Programmer ● Creative</p>
+            <button onclick="location.href='contact.html'">Book Me Now</button>
+        </div>
+
+        <div class="container">
+            <h2>Why Choose Me</h2>
+            <div class="card">🔥 High Energy DJ Sets</div>
+            <div class="card">💻 Tech-Driven Solutions</div>
+            <div class="card">⚡ Creative Experience</div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2>Welcome</h2>
+        <p>I am DJ Igniter, a DJ and tech creator delivering sound and digital experiences.</p>
+
+        <h2>My Work</h2>
+        <div class="card">🔥 DJ Mixtape Vol.1</div>
+        <div class="card">🎧 Live DJ Sessions</div>
+        <div class="card">💻 Website Projects</div>
+
+        <h2>My Services</h2>
+        <div class="card">🎧 DJ Services</div>
+        <div class="card">💻 Web Development</div>
+        <div class="card">🎵 Music Mixing</div>
+
+        <!-- 🎧 MIXTAPE + VISUALIZER -->
+        <h2>🎧 My Mix</h2>
+        <p>Listen to my latest Mixtape</p>
+
+        <audio id="audioPlayer" controls crossorigin="anonymous">
+            <source src="igniter-mix.mp3" type="audio/mpeg">
+        </audio>
+
+        <canvas id="visualizer" width="600" height="150"></canvas>
+
+        <!-- 🎥 VIDEO (optional) -->
+        <h2>Live Performance</h2>
+        <video width="300" controls>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="container">
+        <h2>Featured Services</h2>
+        <div class="card">🎧 Event DJ</div>
+        <div class="card">🎵 Mixtape Production</div>
+        <div class="card">💻 Website Development</div>
+        <button onclick="location.href='services.html'">View All Services</button>
+    </div>
+
+    <div class="container">
+        <h2>What Clients Say</h2>
+        <div class="card">"DJ Igniter brought insane energy!"</div>
+        <div class="card">"Professional and creative."</div>
+        <div class="card">"Top-tier DJ and developer!"</div>
+    </div>
+
+    <div class="container">
+        <h2>About Me</h2>
+        <p>I blend music and technology to deliver unique experiences.</p>
+        <button onclick="location.href='about.html'">Learn More</button>
+    </div>
+
+    <div class="container">
+        <h2>Let’s Work Together</h2>
+        <button onclick="location.href='contact.html'">Get In Touch</button>
+    </div>
+
+    <div class="container">
+        <h2>My Impact</h2>
+        <div class="card">50+ Events Played</div>
+        <div class="card">10+ Websites Built</div>
+        <div class="card">100% Client Satisfaction</div>
+    </div>
+
+    <!-- 🔊 CLICK SOUND -->
+    <audio id="clickSound" src="click.mp3"></audio>
+
+    <!-- ⚙️ MAIN SCRIPT -->
+    <script src="script.js"></script>
+    <script>
+        const audio = document.getElementById("audioPlayer");
+        const canvas = document.getElementById("visualizer");
+        const ctx = canvas.getContext("2d");
+
+        let audioContext;
+        let analyser;
+        let source;
+        let dataArray;
+
+        audio.onplay = () => {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+
+            source = audioContext.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioContext.destination);
+
+            analyser.fftSize = 64;
+            const bufferLength = analyser.frequencyBinCount;
+            dataArray = new Uint8Array(bufferLength);
+
+            draw();
+        };
+
+        function draw() {
+            requestAnimationFrame(draw);
+
+            analyser.getByteFrequencyData(dataArray);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let barWidth = (canvas.width / dataArray.length) * 2;
+            let x = 0;
+
+            for (let i = 0; i < dataArray.length; i++) {
+                let barHeight = dataArray[i];
+
+                ctx.fillStyle = "red";
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+                x += barWidth + 2;
+            }
+        }
+    </script>
+
+    <!-- ✨ PAGE-SPECIFIC SCRIPTS -->
+    <script>
+        // Loader
+        window.addEventListener("load", () => {
+            document.getElementById("loader").style.display = "none";
+
+            // Typing effect
+            const text = "Where Beats Meet Technology";
+            let index = 0;
+
+            function typeEffect() {
+                if (index < text.length) {
+                    document.getElementById("typingText").innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeEffect, 80);
+                }
+            }
+
+            typeEffect();
+        });
+
+        // Scroll animation
+        window.addEventListener("scroll", () => {
+            document.querySelectorAll(".card").forEach(card => {
+                let position = card.getBoundingClientRect().top;
+                let screenHeight = window.innerHeight;
+
+                if (position < screenHeight - 50) {
+                    card.style.opacity = "1";
+                    card.style.transform = "translateY(0)";
+                }
+            });
+        });
+    </script>
+
+    <footer>
+        <p>© 2026 DJ Igniter Studios | All Rights Reserved</p>
+        <p style="font-size:14px;">Designed by DJ Igniter</p>
+    </footer>
+
+</body>
+
+</html>
